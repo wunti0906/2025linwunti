@@ -37,7 +37,6 @@ fun ExamScreen(
                 .align(Alignment.TopStart)
                 .offset(16.dp, 40.dp)
         )
-
         // 右上 role1
         Image(
             painter = painterResource(R.drawable.role1),
