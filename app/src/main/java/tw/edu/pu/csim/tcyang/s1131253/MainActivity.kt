@@ -1,3 +1,4 @@
+// MainActivity.kt
 package tw.edu.pu.csim.tcyang.s1131253
 
 import android.content.pm.ActivityInfo
@@ -20,10 +21,8 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // 強制直式
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 
-        // 全螢幕沉浸模式
         enableEdgeToEdge()
         WindowCompat.setDecorFitsSystemWindows(window, false)
         val controller = WindowCompat.getInsetsController(window, window.decorView)
@@ -33,7 +32,6 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             S1131253Theme {
-                // 直接呼叫 ExamScreen（最乾淨、最不會紅的寫法）
                 ExamScreen(
                     viewModel = viewModel,
                     modifier = Modifier.fillMaxSize()

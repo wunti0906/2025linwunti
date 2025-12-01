@@ -1,3 +1,4 @@
+// ExamScreen.kt  （這個檔案必須單獨存在！）
 package tw.edu.pu.csim.tcyang.s1131253
 
 import androidx.compose.foundation.Image
@@ -11,69 +12,89 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
 fun ExamScreen(
     viewModel: ExamViewModel,
-    modifier: Modifier = Modifier       // 一定要有這行 + 預設值
+    modifier: Modifier = Modifier
 ) {
-    val config = LocalConfiguration.current
-    val width = config.screenWidthDp
-    val height = config.screenHeightDp
+    val widthDp = LocalConfiguration.current.screenWidthDp
+    val heightDp = LocalConfiguration.current.screenHeightDp
 
     Box(
         modifier = modifier
             .fillMaxSize()
-            .background(Color.Yellow),
-        contentAlignment = Alignment.Center
+            .background(Color.Yellow)
     ) {
+        // 左上 role0
+        Image(
+            painter = painterResource(R.drawable.role0),
+            contentDescription = "嬰幼兒",
+            modifier = Modifier
+                .size(130.dp)
+                .align(Alignment.TopStart)
+                .offset(16.dp, 40.dp)
+        )
+
+        // 右上 role1
+        Image(
+            painter = painterResource(R.drawable.role1),
+            contentDescription = "兒童",
+            modifier = Modifier
+                .size(130.dp)
+                .align(Alignment.TopEnd)
+                .offset((-16).dp, 40.dp)
+        )
+
+        // 左下 role2
+        Image(
+            painter = painterResource(R.drawable.role2),
+            contentDescription = "成人",
+            modifier = Modifier
+                .size(130.dp)
+                .align(Alignment.BottomStart)
+                .offset(16.dp, (10).dp)
+        )
+
+        // 右下 role3
+        Image(
+            painter = painterResource(R.drawable.role3),
+            contentDescription = "一般民眾",
+            modifier = Modifier
+                .size(130.dp)
+                .align(Alignment.BottomEnd)
+                .offset((-16).dp, (10).dp)
+        )
+
+        // 中間內容
         Column(
+            modifier = Modifier.fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
             Image(
-                painter = painterResource(id = R.drawable.happy),
-                contentDescription = "快樂圖片",
-                modifier = Modifier.size(280.dp)
+                painter = painterResource(R.drawable.happy),
+                contentDescription = "服務快樂",
+                modifier = Modifier.size(180.dp)  // 已縮小
             )
 
-            Spacer(modifier = Modifier.height(50.dp))
+            Spacer(Modifier.height(16.dp))
+            Text("瑪利亞基金會服務大挑戰",
+                fontSize = 16.sp,color = Color.Black)
 
-            Text(
-                text = "瑪利亞基金會服務大挑戰",
-                fontSize = 16.sp,
-                fontWeight = FontWeight.Medium,
-                color = Color.Black
-            )
+            Spacer(Modifier.height(16.dp))
+            Text("作者：林彣媞",
+                fontSize = 16.sp, color = Color.DarkGray)
 
-            Spacer(modifier = Modifier.height(30.dp))
+            Spacer(Modifier.height(16.dp))
+            Text("螢幕大小 ${widthDp}.0 × ${heightDp}.0",
+                fontSize = 16.sp, color = Color.Black)
 
-            Text(
-                text = "作者：資管二B 林彣媞",
-                fontSize = 16.sp,
-                fontWeight = FontWeight.Medium,
-                color = Color.DarkGray
-            )
-
-            Spacer(modifier = Modifier.height(30.dp))
-
-            Text(
-                text = "螢幕大小 ${width}.0 × ${height}.0",
-                fontSize = 16.sp,
-                color = Color.DarkGray
-            )
-
-            Spacer(modifier = Modifier.height(30.dp))
-
-            Text(
-                text = "成績：${viewModel.score.value} 分",
-                fontSize = 16.sp,
-                fontWeight = FontWeight.Bold,
-                color = Color.DarkGray
-            )
+            Spacer(Modifier.height(16.dp))
+            Text("成績：${viewModel.score.value} 分",
+                fontSize = 16.sp, color = Color.Black)
         }
     }
 }
